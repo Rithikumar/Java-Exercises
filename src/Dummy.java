@@ -1,7 +1,8 @@
 
 public class Dummy {
 	public static void main(String[] args) {
-		int a = 144;
-		System.out.println("mk3");
+		int a = 14;
+		System.out.println("122");
+
 	}
 }
