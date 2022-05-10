@@ -16,12 +16,13 @@ public class NestScope {
 
 		x = 10;
 		if (x == 10) {
-			int y = 20;
+			int y = 20;// y is initialized here
 			System.out.println("x and y: " + x + " " + y);
-			x = y * 2;
+			x = y * 2;// x is changed here
 		}
-		// y = 100;
-		System.out.println("x is " + x);
+		// y = 100; we can't access the y as it is declared within if block
+		System.out.println("x is " + x);// The value of x is accessible here because it is declared in method scope too,
+		// the changes that happen in the if-block is also affected here
 	}
 
 }

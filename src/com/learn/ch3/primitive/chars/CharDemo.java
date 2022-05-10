@@ -12,10 +12,10 @@ public class CharDemo {
 
 	public static void main(String[] args) {
 		char ch1;
-		ch1 = 'X';//120
+		ch1 = 'X';// 120
 		System.out.println("ch1 contains char: " + ch1);
 		// adding char gives the value of next ascii
-		ch1++;//121
+		ch1++;// 121
 		System.out.println("ch1 is now: " + ch1);
 	}
 }

@@ -16,7 +16,7 @@ public class Unicode {
 	 */
 	public static void main(String[] args) {
 		char a = 65535;// limit of char
-		System.out.println(a);//symbol not printed properly
+		System.out.println(a);// symbol not printed properly
 		char ch1, ch2;
 		ch1 = 88;
 		ch2 = 'Y';

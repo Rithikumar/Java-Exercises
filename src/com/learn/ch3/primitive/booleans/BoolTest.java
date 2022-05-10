@@ -16,7 +16,8 @@ public class BoolTest {
 		System.out.println("b is " + b);
 		b = true;
 		System.out.println("b is " + b);
-
+		// if (boolean value) if the boolean value is true block inside if will be
+		// executed
 		if (b)
 			System.out.println("This is executed");
 		b = false;

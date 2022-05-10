@@ -17,7 +17,7 @@ public class LifeTime {
 			int y = -1;// variable y is assigned the here
 			System.out.println("y is: " + y);
 
-			y = 100;// Overtime the loop runs the y is initialized again
+			y = 100;// each time the loop runs the y is initialized again
 			System.out.println("y is now: " + y);
 
 		}

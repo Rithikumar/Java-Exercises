@@ -17,7 +17,11 @@ public class TypePromotion {
 		float f = 5.67f;
 		double d = .1234;
 		double result = (f * b) + (i / c) - (d * s);// The type promoted from their datatype to int or double
-		System.out.println((f * b) + "+" + (i / c) + "-" + (d * s));
+		System.out.println((f * b) + " + " + (i / c) + " - " + (d * s));
+		// This is form in which they type promoted
+		// f *b is promoted to double
+		// i/c is promoted to int
+		// d * s is promoted to double
 		System.out.println(result);
 	}
 }

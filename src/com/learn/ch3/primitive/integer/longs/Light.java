@@ -10,7 +10,7 @@ package com.learn.ch3.primitive.integer.longs;
  */
 public class Light {
 	public static void main(String[] args) {
-		int lightspeed;
+		int lightspeed;// both lightspeed and days are within the range of int thus, int is used
 		int days;
 		long seconds;// long is used here as the value of second and distance is higher than
 						// integer's range

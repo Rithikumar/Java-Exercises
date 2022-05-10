@@ -15,7 +15,10 @@ public class TypeConversion {
 		double d = 323.142;
 
 		System.out.println("\nConversion of int to byte.");
-		b = (byte) i;
+		b = (byte) i;// as the number exceeds the range of byte, it conitnues within the range
+		// that is if 129 is type casted into byte , it goes like
+		// 127 , -128 , -127 thus prints -127
+		// the same happens for all type casting
 		System.out.println("i and b " + i + " " + b);
 
 		System.out.println("\nConversion of double to int.");

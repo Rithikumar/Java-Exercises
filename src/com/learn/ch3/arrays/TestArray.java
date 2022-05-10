@@ -23,12 +23,12 @@ public class TestArray {
 		for (int i = 0; i < 4; i++) {
 			int j = 0;
 			while (j < arr1[i].length) {
-				arr1[i][j] = k;
+				arr1[i][j] = k;// here arr[i][j] is the location of the variable
 				k++;
 				j++;
 			}
 		}
 
-		System.out.println(Arrays.deepToString(arr1));//prints using deeptoString
+		System.out.println(Arrays.deepToString(arr1));// prints using deeptoString
 	}
 }
