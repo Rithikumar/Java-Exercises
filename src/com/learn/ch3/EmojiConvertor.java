@@ -27,10 +27,10 @@ public class EmojiConvertor {
 				{ "love", "\uD83D\uDE0D" } };
 		Scanner scan = new Scanner(System.in);
 		System.out.print("Enter a sentence: ");
-		String line = scan.nextLine();
+		String line = scan.nextLine();// gets a string as an input
 		for (String[] emoji : emojis) {// loops each emoji
 			if (line.contains(emoji[0])) { // checks whether the the emojis are present for the words
-				line = line.replace(emoji[0], emoji[1]);
+				line = line.replace(emoji[0], emoji[1]);// replaces word with emoji
 			}
 		}
 		System.out.println(line);

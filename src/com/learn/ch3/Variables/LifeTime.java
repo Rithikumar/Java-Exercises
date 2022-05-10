@@ -10,13 +10,18 @@ package com.learn.ch3.Variables;
  */
 public class LifeTime {
 	public static void main(String[] args) {
-		int x;
+		int x;// x is declared here
 
 		for (x = 0; x < 3; x++) {
-			int y = -1;
+
+			int y = -1;// variable y is assigned the here
 			System.out.println("y is: " + y);
-			y = 100;
+
+			y = 100;// Overtime the loop runs the y is initialized again
 			System.out.println("y is now: " + y);
+
 		}
+		// System.out.println(y); Throws error
+		// This shows error because the lifetime of the y is within the for loop
 	}
 }

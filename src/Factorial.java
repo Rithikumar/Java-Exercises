@@ -19,9 +19,10 @@ public class Factorial {
 	 * @return the factorial of the number
 	 */
 	static BigInteger one = new BigInteger("1");
+
 	public static BigInteger calc(BigInteger num) {
 //		System.gc();
-		if(num.compareTo(new BigInteger("90000")) == 0) {
+		if (num.compareTo(new BigInteger("90000")) == 0) {
 			System.out.println();
 		}
 		if (num.compareTo(new BigInteger("0")) == 0)
@@ -30,7 +31,7 @@ public class Factorial {
 	}
 
 	public static void main(String[] args) {
-		
+
 		Scanner scan = new Scanner(System.in);
 		boolean continues;
 		continues = true;
