@@ -1,0 +1,88 @@
+1) how is variables allocated in the memory?
+
+ans: Any variable of any type is always stored in the 32 bit cell in which the value of type needed alone is stored.If a variable declared then a 32 bit cell is assigned unless it requires more bits in which adjacent cell is adjoined.
+
+2) Give real world examples for all datatypes?
+
+ans: as all variable almost takes 32 bit cell there is no storage loss in using int, the only reason to do so is to
+give as more insight on the variable and its uses.
+
+=>byte =  no.of weeks , age (living person) , no.of floors , 
+=>short = year in AD/BC , age(people who lived) , no of country in the world
+=>int = no of people in puducherry,age of things , salary
+=>long = phone number, no people in the world , Students List 
+=>float = literacy percent , prices , bullet length , average  
+=>double = light speed , length of planet , size of bacteria , 
+
+3) how is decimal,octal,hexadecimal converted in binary?
+
+ans: 
+-----------decimal to binary:------------
+
+=>22.50
+
+	22.50 x 2 = 45;
+	45/2 = 22			1
+	22/2 = 11			0
+	11/2 = 5 			1
+	5/2  = 2 			1
+	2/2  = 1			0
+	1/2  = 0			1
+
+binary = 10110.1
+
+-----------binary to decimal:-------------
+
+=> 10110.1
+
+	(10110.1) = (1 * 2^4) + ( 0 * 2^3) + (1 * 2^2) + (1 * 2^1)
+				+ ( 0 * 2^0) + (1 * 2^-1) = (22.5)
+
+	  decimal = 22.5
+
+-----------ocatal to binary: -------------
+
+=> 10.31 (8.4)
+
+	1		0		.		3		1
+	001		000		.		011		001
+
+	binary = 001000.011001
+
+-----------binary to ocatal: --------------
+
+=>01000.011001
+
+	01		000		.		011		001
+	1		0		.		3		1
+
+	octal = 10.31
+
+------------hexadecimal to binary:---------
+
+=>45.f
+
+	4		5		.		f
+	100		0101	.		1111
+
+	binary = 1000101.1111
+
+-----------binary to hexadecimal:---------
+
+=>1000101.1111
+
+	100		0101	.		1111
+	4		5		.		f
+
+	hexa = 45.f
+
+4) how char is stored in memory?
+
+ans: char takes 1 byte and the ascii value of the char converted into binary and stored in the byte.It also allows
+usage of some unicode and escape sequences.
+
+5)how is emoji stored ?
+
+ans:emoji's unicode is not included in the ascii table so, it stored in string.
+
+
