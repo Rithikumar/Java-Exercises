@@ -57,7 +57,7 @@ class BoxWeight extends Box {
 	}
 }
 
-public class FinalBox {
+public class BoxDemo {
 	public static void main(String args[]) {
 		BoxWeight mybox1 = new BoxWeight(10, 20, 15, 34.3);
 		BoxWeight mybox2 = new BoxWeight(2, 3, 4, 0.076);
