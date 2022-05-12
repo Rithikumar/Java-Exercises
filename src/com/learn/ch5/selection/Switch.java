@@ -21,5 +21,13 @@ public class Switch {
 			System.out.println("false");
 			break;
 		}
+//		switch (val2) { error here
+//		case "s":
+//			System.out.println("true");
+//			break;
+//		case "false":
+//			System.out.println("false");
+//			break;
+//		}
 	}
 }

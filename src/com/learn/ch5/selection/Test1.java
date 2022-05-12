@@ -15,6 +15,7 @@ public class Test1 {
 		// continuous 'if' can be used if more than one condition needs to be present
 		int age;
 		Scanner scan = new Scanner(System.in);
+		System.out.print("Enter a number: ");
 		age = scan.nextInt();
 		if (age < 2)
 			System.out.println("You are a baby");
