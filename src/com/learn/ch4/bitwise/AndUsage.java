@@ -83,7 +83,7 @@ public class AndUsage {
 			System.out.println("Time is not wasted here");
 		}
 		//no error found here
-		else if (expression(num1,num2,num3) & result.contains("-")) {
+		else if (expression(num1,num2,num3) && result.contains("-")) {
 			System.out.println(true);
 		}
 	}

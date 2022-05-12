@@ -16,17 +16,18 @@ public class IfElse {
 		int month;
 		String season;
 		Scanner scan = new Scanner(System.in);
+		System.out.print("Enter a number: ");
 		month = scan.nextInt();
-		if (month == 12 || month < 3)
+		if(month < 0 || month > 12)
+			season = "Bogus Month";
+		else if (month == 12 || month < 3)
 			season = "Winter";
 		else if (month < 6)
 			season = "Spring";
 		else if (month < 9)
 			season = "Summer";
-		else if (month < 12)
-			season = "Autumn";
 		else
-			season = "Bogus Month";
+			season = "Autumn";
 		System.out.println("The season you chose is " + season);
 	}
 }

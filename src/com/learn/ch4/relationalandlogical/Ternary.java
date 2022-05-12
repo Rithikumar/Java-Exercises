@@ -19,6 +19,8 @@ public class Ternary {
 		i = -10;
 		k = i < 0 ? -i : i;// get abs of i
 		System.out.println("Absolute value of " + i + " is " + k);
+		
+		
 
 	}
 }

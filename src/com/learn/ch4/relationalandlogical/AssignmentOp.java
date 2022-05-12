@@ -19,7 +19,7 @@ public class AssignmentOp {
 		System.out.println(x2 + " " + x + " " + y);
 		int ratio = 4 == 0 ? 0 : 1;
 		System.out.println(ratio);
-		int multi = x < 2 ? y == 3 ? 1 : x < 0 ? 2 : 3 : 4;
+		int multi = x < 2 ? (y == 3 ? 1 : (x < 0 ? 2 : 3)) : 4;
 		// to if else
 		if (x < 2) {
 			if (y == 3) {
