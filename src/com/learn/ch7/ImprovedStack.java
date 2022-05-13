@@ -23,6 +23,7 @@ public class ImprovedStack {
 			stck[++tos] = item;
 	}
 	
+	//Deletes the last item from the stack 
 	int pop() {
 		if(tos < 0) {
 			System.out.println("stack underflow");

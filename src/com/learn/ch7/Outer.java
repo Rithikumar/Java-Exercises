@@ -14,7 +14,6 @@ public class Outer {
 		d.test();
 	}
 }
-
 class Demo{
 	int outer_x = 100;
 
@@ -22,11 +21,16 @@ class Demo{
 		Inner innner = new Inner();
 		innner.display();
 	}
-
+	//Inner class starts here
 	class Inner {
-
+		//can access the variables present in the outer loop
 		void display() {
 			System.out.println("Outer_x = " + outer_x);
 		}
 	}
+	
+	
 }
+
+
+

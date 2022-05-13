@@ -1,5 +1,13 @@
 package com.learn.ch7;
 
+/**
+ * <p>
+ * The driver class for the class outer
+ * </p>
+ * 
+ * @author rithi-zstch1028
+ *
+ */
 public class ForNestedClass {
 	public static void main(String[] main) {
 		Outers outer = new Outers();
@@ -7,12 +15,24 @@ public class ForNestedClass {
 	}
 }
 
-//Define an inner class within a for loop.
+/**
+ * <p>
+ * A class in which i studied abniut
+ * </p>
+ * 
+ * @author rithi-zstch1028
+ *
+ */
 class Outers {
 	int outer_x = 100;
 
 	void test() {
 		for (int i = 0; i < 10; i++) {
+			/**
+			 * <p>Nested class</p>
+			 * @author rithi-zstch1028
+			 *
+			 */
 			class Inner {
 				void display() {
 					System.out.println("display: outer_x = " + outer_x);
