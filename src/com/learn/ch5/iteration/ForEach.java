@@ -12,12 +12,19 @@ public class ForEach {
 	public static void main(String[] args) {
 		int[] nums = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
 		int sum = 0;
-
-		for (int x : nums) {
-			System.out.println("Value is: " + x);
-			sum += x;
+		class Inner{
+			int s;
+			
+			Inner(int s){
+				this.s = s;
+			}
 		}
+		Inner[] s1 = {new Inner(4) , new Inner(3) , new Inner(2)};
+		for (Inner x : s1) {
+			System.out.println("Value is: " + x.s);
+			x.s++;
+		}
+		System.out.println(s1[0].s);
 
-		System.out.println("Summation: " + sum);
 	}
 }

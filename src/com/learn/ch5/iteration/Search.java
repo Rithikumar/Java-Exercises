@@ -5,9 +5,6 @@ package com.learn.ch5.iteration;
  * A simple program to check whether the given number is present in the array or
  * not
  * </p>
- * <p>
- * Where For-each shines the most
- * </p>
  * 
  * @author rithi-zstch1028
  *

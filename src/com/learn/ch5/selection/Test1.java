@@ -23,8 +23,7 @@ public class Test1 {
 			System.out.println("You are a young adult");
 		if (age < 59)
 			System.out.println("You are a middle aged adult");
-		if (age < 99)
-			System.out.println("You are a old adult");
+		if (age < 99) {System.out.println("You are a old adult");}
 		// if executed will print all the statements , we can solve this in 3 ways
 		// normal if with multiple conditions
 		System.out.println("\nMultiple conditions\n");
