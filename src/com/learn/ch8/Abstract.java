@@ -6,7 +6,7 @@ package com.learn.ch8;
  *
  */
 abstract class O{
-	abstract void callme();
+	void callme() {};
 	
 	//concrete methods are still allowed in abstract classes
 	void callmetoo() {

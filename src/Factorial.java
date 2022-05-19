@@ -1,3 +1,4 @@
+import java.lang.reflect.InvocationTargetException;
 import java.math.BigInteger;
 import java.util.Scanner;
 
@@ -21,6 +22,7 @@ public class Factorial {
 	static BigInteger one = new BigInteger("1");
 
 	public static BigInteger calc(BigInteger num) {
+		
 //		System.gc();
 		if (num.compareTo(new BigInteger("90000")) == 0) {
 			System.out.println();
@@ -29,9 +31,26 @@ public class Factorial {
 			return one;
 		return num.multiply(calc(num.subtract(one)));
 	}
+	
+	public static void infinte() {
+		for(int i = 0 ; true ; i++) {
+			System.out.print("s");
+		}
+	}
+	
+	public static void main(String[] args) throws NoSuchFieldException, SecurityException, NoSuchMethodException, IllegalArgumentException, IllegalAccessException, InvocationTargetException {
+		java.lang.management.RuntimeMXBean runtime = 
+			    java.lang.management.ManagementFactory.getRuntimeMXBean();
+			java.lang.reflect.Field jvm = runtime.getClass().getDeclaredField("jvm");
+			jvm.setAccessible(true);
+			sun.management.VMManagement mgmt =  
+			    (sun.management.VMManagement) jvm.get(runtime);
+			java.lang.reflect.Method pid_method =  
+			    mgmt.getClass().getDeclaredMethod("getProcessId");
+			pid_method.setAccessible(true);
 
-	public static void main(String[] args) {
-
+			int pid = (Integer) pid_method.invoke(mgmt);
+			System.out.println(pid);
 		Scanner scan = new Scanner(System.in);
 		boolean continues;
 		continues = true;
@@ -54,6 +73,7 @@ public class Factorial {
 				} else
 					inValid = false;
 			}
+			//infinte();
 			System.out.println("Output: " + calc(b));
 			boolean continueValid = true;
 			// Loops till the user gives a valid input(yes or no)
