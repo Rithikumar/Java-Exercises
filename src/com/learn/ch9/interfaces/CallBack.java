@@ -1,6 +1,9 @@
 package com.learn.ch9.interfaces;
 
-public interface CallBack {
+interface CallBack {
 	int n = 0;
-	void callBack(int a);
+	static void callBack(int a) {
+		System.out.println("hi");
+	}
+	int sum(int a,int b);
 }
