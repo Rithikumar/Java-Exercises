@@ -10,14 +10,18 @@ package com.learn.ch6;
  */
 class Box {
 	double width;
-	double height;
+    double height;
 	double depth;
 
-	Box(double w, double h, double d) {
+	Box(double width, double h, double d) {
 		System.out.println("Constructing Box");
-		this.width = w;
-		this.height = h;
-		this.depth = d;
+		this.width = width;
+		height = h;
+		depth = d;
+	}
+	
+	Box(){
+		System.out.println("Constructed");
 	}
 //    void setDim(double w,double h,double d) {
 //        width = w;
@@ -27,6 +31,10 @@ class Box {
 
 	double volume() {
 		return width * height * depth;
+	}
+	
+	double addHeightAndWidth(int h , int w) {
+		return h+w;
 	}
 
 	protected void finalize() {
@@ -38,7 +46,10 @@ public class Method {
 	public static void main(String[] args) {
 		Box myBox1 = new Box(10, 20, 15);
 		Box myBox2 = new Box(3, 6, 9);
-
+		int nam = 13;
+		int n1 = nam;
+		Box mybox3 = myBox1;
+		myBox1.depth = 4;
 //        myBox1.setDim(10,20,15);
 //        myBox2.setDim(3,6,9);
 
