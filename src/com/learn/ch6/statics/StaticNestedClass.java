@@ -1,7 +1,7 @@
 package com.learn.ch6.statics;
 
 class OuterClass {
-	static class inner {
+	static class Inner {
 		void displahy() {
 			System.out.println("Check");
 		}
@@ -11,9 +11,10 @@ class OuterClass {
 public class StaticNestedClass {
 	
 	public static void main(String[] args) {
-		
-		OuterClass.inner as = new OuterClass.inner();
+		java.util.HashMap<String,String> m = new java.util.HashMap<>();
+		OuterClass.Inner as = new OuterClass.Inner();
 		as.displahy();
+		
 	}
 	
 	static {
