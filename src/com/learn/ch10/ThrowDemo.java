@@ -7,6 +7,16 @@ public class ThrowDemo {
 		}
 		catch(NullPointerException e) {
 			System.out.println("Caught inside demoproc");
+			throw e; // rethrow the exception
+		}
+	}
+	
+	public static void main(String[] args) {
+		try {
+			demoProc();
+		}
+		catch(Exception e) {
+			System.out.println("Recaught: " + e);
 		}
 	}
 }
