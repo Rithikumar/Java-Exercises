@@ -14,7 +14,10 @@ public class StaticBlock {
 		System.out.println("I am first");
 		System.out.println(num);
 	}
-	
+	static {
+		System.out.println("I am first ");
+		System.out.println(num);
+	}
 	//As we mostly know that main , is the first method in our progra,,am
 	public static void main(String[] args) {
 		System.out.println("hello there");
