@@ -20,16 +20,17 @@ class K extends J {
 		super(a, b);
 		k = c;
 	}
-
-	void show(String message) {
-		System.out.println(message + k);
+	
+	@Override
+	void show() {
+		System.out.println(k);
 	}
 }
 
-public class Override {
+public class Overrides {
 	public static void main(String[] args) {
 		K subo = new K(1,2,3);
-		subo.show("This is k:");
+		subo.show();
 		subo.show();
 		
 	}

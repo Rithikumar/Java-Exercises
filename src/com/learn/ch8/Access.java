@@ -12,21 +12,43 @@ package com.learn.ch8;
  * @author rithi-zstch1028
  */
 class C {
-	int i;//default
+	protected int i;// protected
 	private int j;//private to A
-	
 	void setij(int x , int y) {
 		i = x;
 		j = y;
 	}
+	
+	void sum() {
+		System.out.println(i+j);
+		
+	}
+	
+	static void add(int a , int b) {
+		System.out.println(a+b);
+	}
+	
+//	@Override
+//	public String toString() {
+//		return null;
+//	}
+	
+	
 }
 
 class D extends C {
 	int total;
+	
+	@Override
 	void sum() {
 		total = i;
 		//total = i + j; //Error, j is not accessible here
 	}
+	
+	public static void add(int a , int b) {
+		
+	}
+
 }
 
 public class Access {

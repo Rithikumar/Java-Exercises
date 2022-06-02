@@ -14,13 +14,14 @@ public class Final {
 	final int FILE_SAVE = 3;
 
 	final static int give() {
-		return 4;
+		final int num = 4;
+		return num;
 	}
 
 	public static void main(String[] args) {
 		// FILE_NEW = 12; is not editable
 		System.out.println(give());
+		
 	}
 
 }
-

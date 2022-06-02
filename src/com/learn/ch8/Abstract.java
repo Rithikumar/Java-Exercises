@@ -14,7 +14,7 @@ abstract class O{
 	}
 }
 class P extends O {
-	
+	@Override
 	void callme() {
 		System.out.println("N is implementation of callme");
 	}

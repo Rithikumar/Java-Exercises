@@ -1,5 +1,6 @@
 package com.learn.ch7;
 
-public class FinalExtend {
-
+public class FinalExtend extends Final{
+	
+	
 }
