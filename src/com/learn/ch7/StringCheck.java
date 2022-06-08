@@ -9,11 +9,16 @@ package com.learn.ch7;
  *
  */
 public class StringCheck {
-	public static void main(String[] args) {
-		String sample = "i am sample";
-		method(sample);
-		// sample = "i am not sample";
-		System.out.println(sample);
+	public static void main(String[] args) throws InterruptedException {
+//		String sample = "i am sample";
+//		System.out.println(sample.hashCode());
+//		method(sample);
+//		sample = "i am not sample";
+//		System.out.println(sample.hashCode());
+//		System.out.println(sample);
+		method("sample");
+		Thread.sleep(5000);
+		method("sample");
 		// because java is a pass by value
 		// the value of the argument is set to parameter
 		// As string is immutable when edited it assigns a new references to the
@@ -24,5 +29,7 @@ public class StringCheck {
 	static void method(String sample) {
 
 		sample = "i am not sample";
+		System.out.println(sample.hashCode());
+		
 	}
 }

@@ -11,6 +11,7 @@ class NewThread implements Runnable {
 	NewThread() {
 		t = new Thread(this, "Demo Thread");
 		System.out.println("Child thread: " + t);
+		t.run();
 		t.start(); // start the thread
 	}
 	

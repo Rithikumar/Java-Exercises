@@ -10,7 +10,7 @@ package com.learn.ch7;
  */
 public class VarArgs2 {
 
-	static void vaTest(String msg, int... v) {
+	static void vaTest(String msg, int[] v) { 
 		System.out.print(msg + v.length + " Content: ");
 		
 		for (int x : v)
@@ -19,9 +19,9 @@ public class VarArgs2 {
 	}
 
 	public static void main(String[] args) {
-		vaTest("One varargs: ", 10);
-		vaTest("Three varargs: ", 1, 2, 3);
-		vaTest("No varargs: ");
+		vaTest("One varargs: ", new int[] {10, 20});
+//		vaTest("Three varargs: ", 1, 2, 3);
+//		vaTest("No varargs: ");
 	}
 
 }

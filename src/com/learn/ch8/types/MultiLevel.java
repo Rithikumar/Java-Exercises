@@ -33,6 +33,7 @@ class Sports extends Marks {
 	}
 	
 	void getScore() {
+		getNo();
 		System.out.println("Score = " + score);
 	}
 
