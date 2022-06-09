@@ -1,4 +1,4 @@
-package crieteria;
+package crieteriaOld;
 
 import java.util.Scanner;
 import java.util.Stack;
