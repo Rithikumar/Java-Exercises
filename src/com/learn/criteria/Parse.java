@@ -1,5 +1,6 @@
 package com.learn.criteria;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.Stack;
 
@@ -9,15 +10,15 @@ public class Parse {
 		String res = "";
 		int count = 0;
 		Criteria cfinal = new Criteria();
-		Stack<Object> st = new Stack<Object>();
-		Stack<String> conditions = new Stack<String>();
-		if (in.contains("(") && in.contains(")")) {
+		ArrayList<Object> st = new ArrayList<Object>();
+		ArrayList<String> conditions = new ArrayList<String>();
+		if (in.contains("(") || in.contains(")")) {
 			for (char a : in.toCharArray()) {
 				if (a == '(') {
 					if (count != 0) {
 						res += a;
 					} else if (res != "" && st.size() != 0) {
-						conditions.push(res);
+						conditions.add(res);
 						res = "";
 					}
 
@@ -25,7 +26,7 @@ public class Parse {
 				} else if (a == ')') {
 					count--;
 					if (count == 0) {
-						st.push(recur(res));
+						st.add(recur(res));
 						res = "";
 					} else {
 						res += a;
@@ -34,10 +35,15 @@ public class Parse {
 				} else {
 					res += a;
 				}
+				if(in.indexOf(a) == in.length()-1 && res != "") {
+					throw new Exception("brackects not found on " + res);
+					
+				}
 			}
 		} else {
 			String[] arr = in.split(",");
 			Criterian c = null;
+			if(arr.length == 3) {
 			int a = Integer.parseInt(arr[1]);
 			switch (a) {
 			case 0:
@@ -56,6 +62,10 @@ public class Parse {
 				throw new Exception("Operator is invalid");
 			}
 			return c;
+			}
+			else {
+				throw new Exception("Parameters invalid in ("+ in +")");
+			}
 		}
 		for (int i = 0; i < st.size(); i++) {
 			Object c = st.get(i);
