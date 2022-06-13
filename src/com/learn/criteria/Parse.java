@@ -6,7 +6,7 @@ import java.util.Stack;
 
 public class Parse {
 
-	public static Object recur(String in) throws Exception {
+	public static Object loadFromString(String in) throws Exception {
 		String res = "";
 		int count = 0;
 		Criteria cfinal = new Criteria();
@@ -26,7 +26,7 @@ public class Parse {
 				} else if (a == ')') {
 					count--;
 					if (count == 0) {
-						st.add(recur(res));
+						st.add(loadFromString(res));
 						res = "";
 					} else {
 						res += a;
@@ -43,6 +43,8 @@ public class Parse {
 		} else {
 			String[] arr = in.split(",");
 			Criterian c = null;
+			check(arr[0]);
+			check(arr[1]);
 			if(arr.length == 3) {
 			int a = Integer.parseInt(arr[1]);
 			switch (a) {
@@ -59,7 +61,7 @@ public class Parse {
 				c = new Criterian(arr[0], Operator.LESSER_THAN, arr[2]);
 				break;
 			default:
-				throw new Exception("Operator is invalid");
+				throw new Exception("Operator is invalid in ("+arr[0]+","+a+","+arr[1]+")");
 			}
 			return c;
 			}
@@ -98,9 +100,20 @@ public class Parse {
 				}
 			}
 		}
+		if(res != "") {
+			throw new Exception("Invalid format");
+		}
 
 		return cfinal;
 
+	}
+	
+	public static void check(String toCheck) throws Exception {
+		if(toCheck.contains("\"")){
+			if(!(toCheck.charAt(0) == '"' && toCheck.charAt(toCheck.length()-1) == '"')){
+				throw new Exception("Improper value assigning in "+toCheck);
+			}
+		}
 	}
 
 	public static void main(String[] args) {
@@ -108,7 +121,13 @@ public class Parse {
 		String in = new Scanner(System.in).nextLine();
 		// System.out.println(((Criteria) recur(in)).toString());
 		try {
-			System.out.println(((Criteria) recur(in)).getCriteriaString());
+			Object result =  loadFromString(in);
+			if(result instanceof Criteria) {
+				System.out.println(((Criteria) result).getCriteriaString());
+			}
+			else {
+				System.out.println(((Criterian) result).getExpression());
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
