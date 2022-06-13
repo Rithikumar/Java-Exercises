@@ -45,31 +45,40 @@ public class Parse {
 				}
 			}
 		} else {
-			String[] arr = in.split(",");
-			Criterian c = null;
-			if (arr.length == 3) {
-				int a = Integer.parseInt(arr[1]);
-				check(arr[0]);
-				check(arr[2]);
-				switch (a) {
-				case 0:
-					c = new Criterian(arr[0], Operator.EQUAL, arr[2]);
-					break;
-				case 1:
-					c = new Criterian(arr[0], Operator.NOT_EQUAL, arr[2]);
-					break;
-				case 2:
-					c = new Criterian(arr[0], Operator.GREATER_THAN, arr[2]);
-					break;
-				case 4:
-					c = new Criterian(arr[0], Operator.LESSER_THAN, arr[2]);
-					break;
-				default:
-					throw new Exception("Operator is invalid in (" + arr[0] + "," + a + "," + arr[1] + ")");
+			if(in.contains("!")) {
+				throw new Exception("Use brackets to specify nots");
+			}
+			else if(in.contains("and")){
+				String[] arr = in.split("and");
+				for(int i = 0 ; i < arr.length ; i++) {
+					String a = arr[i];
+					if(a.contains("or")) {
+						String[] arr2 = a.split("or");
+						for(int j =0 ; j < arr2.length ; j++) {
+							st.add(separation(arr2[j]));
+							if(j!=arr2.length-1) {
+								conditions.add("or");
+								}
+						}
+		
+					}
+					else {
+						st.add(separation(a));
+					}
+					if(i!=arr.length-1) {
+					conditions.add("and");
+					}
 				}
-				return c;
-			} else {
-				throw new Exception("Parameters invalid in (" + in + ")");
+			}
+			else if(in.contains("or")) {
+				String[] arr = in.split("or");
+				for(int i = 0 ; i < arr.length ; i++) {
+					conditions.add("or");
+					st.add(separation(arr[i]));
+				}
+			}
+			else {
+				st.add(separation(in));
 			}
 		}
 		for (int i = 0; i < st.size(); i++) {
@@ -77,7 +86,7 @@ public class Parse {
 			if (c instanceof Criteria) {
 				if (i == 0) {
 					if (!conditions.isEmpty() && conditions.get(i).equals("!")) {
-						cfinal = cfinal.and((Criteria) c);
+						cfinal = cfinal.not((Criteria) c);
 						conditions.remove(0);
 					} else {
 						cfinal = cfinal.and((Criteria) c);
@@ -134,8 +143,38 @@ public class Parse {
 		return cfinal;
 
 	}
+	
+	public static Criterian separation(String in) throws Exception {
+		String[] arr = in.split(",");
+		Criterian c = null;
+		if (arr.length == 3) {
+			int a = Integer.parseInt(arr[1]);
+			checkVariable(arr[0]);
+			checkVariable(arr[2]);
+			switch (a) {
+			case 0:
+				c = new Criterian(arr[0], Operator.EQUAL, arr[2]);
+				break;
+			case 1:
+				c = new Criterian(arr[0], Operator.NOT_EQUAL, arr[2]);
+				break;
+			case 2:
+				c = new Criterian(arr[0], Operator.GREATER_THAN, arr[2]);
+				break;
+			case 3:
+				c = new Criterian(arr[0], Operator.LESSER_THAN, arr[2]);
+				break;
+			default:
+				throw new Exception("Operator is invalid in (" + arr[0] + "," + a + "," + arr[1] + ")");
+			}
+			return c;
+		} else {
+			throw new Exception("Parameters invalid in (" + in + ")");
+		}
+	}
 
-	public static void check(String toCheck) throws Exception {
+	public static void checkVariable(String toCheck) throws Exception {
+		toCheck = toCheck.trim();
 		if (toCheck.contains("\"")) {
 			if (!(toCheck.charAt(0) == '"' && toCheck.charAt(toCheck.length() - 1) == '"')) {
 				throw new Exception("Improper value assigning in " + toCheck);
