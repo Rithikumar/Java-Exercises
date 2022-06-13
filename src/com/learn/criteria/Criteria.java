@@ -19,6 +19,14 @@ public class Criteria {
 	public Criteria and(String field, Operator operator, Object value) {
 		return and(new Criterian(field, operator, value));
 	}
+	
+	public Criteria not(Object crt) {
+		criteria.add("!");
+		criteria.add("(");
+		criteria.add(crt);
+		criteria.add(")");
+		return this;
+	}
 
 	public Criteria and(Criterian criterian) {
 		if (!criteria.isEmpty()) {
@@ -40,6 +48,15 @@ public class Criteria {
 		return this;
 	}
 	
+	public Criteria notAnd(Object obj) {
+		criteria.add(" AND ");
+		criteria.add("!");
+		criteria.add("(");
+		criteria.add(obj);
+		criteria.add(")");
+		return this;
+	}
+	
 	public Criteria or(Criterian criterian) {
 		if (!criteria.isEmpty()) {
 			criteria.add(" OR ");
@@ -57,6 +74,15 @@ public class Criteria {
 			criteria.add(crt);
 			criteria.add(" ) ");
 		}
+		return this;
+	}
+	
+	public Criteria notOr(Object obj) {
+		criteria.add(" OR ");
+		criteria.add("!");
+		criteria.add("(");
+		criteria.add(obj);
+		criteria.add(")");
 		return this;
 	}
 	
