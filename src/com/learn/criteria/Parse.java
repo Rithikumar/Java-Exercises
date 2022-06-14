@@ -1,6 +1,7 @@
 package com.learn.criteria;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Scanner;
 
 public class Parse {
@@ -191,7 +192,7 @@ public class Parse {
 			}
 		}
 	}
-
+	
 	public static void main(String[] args) {
 		allowedFilterCols.add("field1");
 		allowedFilterCols.add("field2");
@@ -199,14 +200,23 @@ public class Parse {
 		allowedFilterCols.add("field4");
 		System.out.print("Enter string: ");
 		String in = new Scanner(System.in).nextLine();
-
+		HashMap<String,Object> map = new HashMap<String, Object>();
+		map.put("field1", "rith");
+		map.put("field2", "3");
+		map.put("field3", "2");
+		map.put("field4", "1");
 		try {
 			// .out.println(((Criteria) loadFromString(in)).toString());
 			Object result = loadFromString(in);
 			if (result instanceof Criteria) {
-				System.out.println(((Criteria) result).getCriteriaString());
+				Criteria c = ((Criteria) result);
+				System.out.println(c.getCriteriaString());
+				System.out.println(Criteria.evaluate(c, map));
+				
 			} else {
-				System.out.println(((Criterian) result).getExpression());
+				Criterian c = (Criterian) result;
+				System.out.println(c.getExpression());
+				System.out.println(Criterian.evaluate(c, map));
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

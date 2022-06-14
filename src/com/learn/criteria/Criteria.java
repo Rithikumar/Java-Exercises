@@ -1,6 +1,9 @@
 package com.learn.criteria;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Stack;
+import java.util.concurrent.ArrayBlockingQueue;
 
 public class Criteria {
 
@@ -8,7 +11,7 @@ public class Criteria {
 	
 	public Criteria() {};
 
-	public Criteria(String field, Operator operator, Object value) {
+	public Criteria(String field, Operator operator, String value) {
 		criteria.add(new Criterian(field, operator, value));
 	}
 	
@@ -16,7 +19,7 @@ public class Criteria {
 		criteria.add(c);
 	}
 
-	public Criteria and(String field, Operator operator, Object value) {
+	public Criteria and(String field, Operator operator, String value) {
 		return and(new Criterian(field, operator, value));
 	}
 	
@@ -106,5 +109,55 @@ public class Criteria {
 			}
 		}
 		return buf.toString();
+	}
+	
+	public static boolean evaluate(Criteria c , HashMap<String,Object> map) {
+		ArrayList<Boolean> result = new ArrayList<Boolean>();
+		ArrayList<String> condition = new ArrayList<String>();
+		for(int i = 0 ; i < c.criteria.size() ; i++) {
+			Object crt = c.criteria.get(i);
+			if(crt instanceof Criterian) {
+				Criterian cri = (Criterian) crt;
+				result.add(Criterian.evaluate(cri, map));
+			}
+			else if (crt instanceof Criteria) {
+				Criteria criteria = (Criteria) crt;
+				if(!criteria.criteria.isEmpty()) {
+					if(i != 0 && i != 1) {
+						if(c.criteria.get(i-2).equals("!")) {
+							result.add(!(Criteria.evaluate((Criteria)crt, map)));
+						}
+						else {
+							result.add(Criteria.evaluate((Criteria)crt, map));
+						}
+					}
+					else {
+						result.add(Criteria.evaluate((Criteria)crt, map));
+					}
+				}
+			}
+			else if (crt instanceof String) {
+				String stringOpe = ((String)crt);
+				if(stringOpe.equals(" AND ") || stringOpe.equals(" OR ")) {
+					condition.add(stringOpe);
+				}
+			}
+		}
+		boolean finalResult = false;
+		for(int i = 0 ; i < result.size() ; i ++) {
+			boolean a = result.get(i);
+			if(i == 0) {
+				finalResult = a;
+			}
+			else {
+				if(condition.get(i-1).equals(" AND ")) {
+					finalResult = finalResult && a;
+				}
+				else if(condition.get(i-1).equals(" OR ")){
+					finalResult = finalResult || a;
+				}
+			}
+		}
+		return finalResult;
 	}
 }
