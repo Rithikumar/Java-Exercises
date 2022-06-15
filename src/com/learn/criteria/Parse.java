@@ -5,10 +5,9 @@ import java.util.HashMap;
 import java.util.Scanner;
 
 public class Parse {
-	
-	private static ArrayList<String> allowedFilterCols = new ArrayList<String>();
 
-	public static Object loadFromString(String in) throws Exception {
+	public static Object loadFromString(String in, ArrayList<String> allowedFilterCols,
+			ArrayList<Operator> allowedOperators) throws Exception {
 		String res = "";
 		int count = 0;
 		Criteria cfinal = new Criteria();
@@ -31,7 +30,7 @@ public class Parse {
 				} else if (a == ')') {
 					count--;
 					if (count == 0) {
-						st.add(loadFromString(res));
+						st.add(loadFromString(res, allowedFilterCols, allowedOperators));
 						res = "";
 					} else {
 						res += a;
@@ -46,40 +45,36 @@ public class Parse {
 				}
 			}
 		} else {
-			if(in.contains("!")) {
+			if (in.contains("!")) {
 				throw new Exception("Use brackets to specify nots");
-			}
-			else if(in.contains("and")){
+			} else if (in.contains("and")) {
 				String[] arr = in.split("and");
-				for(int i = 0 ; i < arr.length ; i++) {
+				for (int i = 0; i < arr.length; i++) {
 					String a = arr[i];
-					if(a.contains("or")) {
+					if (a.contains("or")) {
 						String[] arr2 = a.split("or");
-						for(int j =0 ; j < arr2.length ; j++) {
-							st.add(separation(arr2[j]));
-							if(j!=arr2.length-1) {
+						for (int j = 0; j < arr2.length; j++) {
+							st.add(separation(arr2[j], allowedFilterCols, allowedOperators));
+							if (j != arr2.length - 1) {
 								conditions.add("or");
-								}
+							}
 						}
-		
+
+					} else {
+						st.add(separation(a, allowedFilterCols, allowedOperators));
 					}
-					else {
-						st.add(separation(a));
-					}
-					if(i!=arr.length-1) {
-					conditions.add("and");
+					if (i != arr.length - 1) {
+						conditions.add("and");
 					}
 				}
-			}
-			else if(in.contains("or")) {
+			} else if (in.contains("or")) {
 				String[] arr = in.split("or");
-				for(int i = 0 ; i < arr.length ; i++) {
+				for (int i = 0; i < arr.length; i++) {
 					conditions.add("or");
-					st.add(separation(arr[i]));
+					st.add(separation(arr[i], allowedFilterCols, allowedOperators));
 				}
-			}
-			else {
-				st.add(separation(in));
+			} else {
+				st.add(separation(in, allowedFilterCols, allowedOperators));
 			}
 		}
 		for (int i = 0; i < st.size(); i++) {
@@ -144,29 +139,38 @@ public class Parse {
 		return cfinal;
 
 	}
-	
-	public static Criterian separation(String in) throws Exception {
+
+	public static Criterian separation(String in, ArrayList<String> allowedFilterCols,
+			ArrayList<Operator> allowedOperators) throws Exception {
 		String[] arr = in.split(",");
 		Criterian c = null;
 		if (arr.length == 3) {
 			int a = Integer.parseInt(arr[1]);
-			checkVariable(arr[0]);
-			checkVariable(arr[2]);
-			switch (a) {
-			case 0:
-				c = new Criterian(arr[0], Operator.EQUAL, arr[2]);
-				break;
-			case 1:
-				c = new Criterian(arr[0], Operator.NOT_EQUAL, arr[2]);
-				break;
-			case 2:
-				c = new Criterian(arr[0], Operator.GREATER_THAN, arr[2]);
-				break;
-			case 3:
-				c = new Criterian(arr[0], Operator.LESSER_THAN, arr[2]);
-				break;
-			default:
-				throw new Exception("Operator is invalid in (" + arr[0] + "," + a + "," + arr[1] + ")");
+			checkVariable(arr[0], allowedFilterCols);
+			checkVariable(arr[2], allowedFilterCols);
+			if (allowedOperators == null || allowedOperators.isEmpty()) {
+				switch (a) {
+				case 0:
+					c = new Criterian(arr[0], Operator.EQUAL, arr[2]);
+					break;
+				case 1:
+					c = new Criterian(arr[0], Operator.NOT_EQUAL, arr[2]);
+					break;
+				case 2:
+					c = new Criterian(arr[0], Operator.GREATER_THAN, arr[2]);
+					break;
+				case 3:
+					c = new Criterian(arr[0], Operator.LESSER_THAN, arr[2]);
+					break;
+				default:
+					throw new Exception("Operator is invalid in (" + arr[0] + "," + a + "," + arr[1] + ")");
+				}
+			} else {
+				if(allowedOperators.size()>a) {
+				c = new Criterian(arr[0], allowedOperators.get(a), arr[2]);
+				}else {
+					throw new Exception("Operator is invalid in (" + arr[0] + "," + a + "," + arr[1] + ")");
+				}
 			}
 			return c;
 		} else {
@@ -174,45 +178,49 @@ public class Parse {
 		}
 	}
 
-	public static void checkVariable(String toCheck) throws Exception {
+	public static void checkVariable(String toCheck, ArrayList<String> allowedFilterCols) throws Exception {
 		toCheck = toCheck.trim();
 		if (toCheck.contains("\"")) {
 			if (!(toCheck.charAt(0) == '"' && toCheck.charAt(toCheck.length() - 1) == '"')) {
 				throw new Exception("Improper value assigning in " + toCheck);
 			}
-		}else {
+		} else {
 			boolean res = false;
-			for(int i = 0 ; i < allowedFilterCols.size() ; i++) {
-				if(allowedFilterCols.get(i).equals(toCheck)) {
+			for (int i = 0; i < allowedFilterCols.size(); i++) {
+				if (allowedFilterCols.get(i).equals(toCheck)) {
 					res = true;
 				}
 			}
-			if(!res) {
-				throw new Exception("Variable name \""+ toCheck +"\" is not in the allowed columns" );
+			if (!res) {
+				throw new Exception("Variable name \"" + toCheck + "\" is not in the allowed columns");
 			}
 		}
 	}
-	
+
 	public static void main(String[] args) {
+		ArrayList<String> allowedFilterCols = new ArrayList<String>();
 		allowedFilterCols.add("field1");
 		allowedFilterCols.add("field2");
 		allowedFilterCols.add("field3");
 		allowedFilterCols.add("field4");
+		ArrayList<Operator> allowedOperators = new ArrayList<Operator>();
+		allowedOperators.add(Operator.EQUAL);
+		allowedOperators.add(Operator.NOT_EQUAL);
 		System.out.print("Enter string: ");
 		String in = new Scanner(System.in).nextLine();
-		HashMap<String,Object> map = new HashMap<String, Object>();
-		map.put("field1", "rith");
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("field1", "4");
 		map.put("field2", "3");
 		map.put("field3", "2");
 		map.put("field4", "1");
 		try {
 			// .out.println(((Criteria) loadFromString(in)).toString());
-			Object result = loadFromString(in);
+			Object result = loadFromString(in, allowedFilterCols, allowedOperators);
 			if (result instanceof Criteria) {
 				Criteria c = ((Criteria) result);
 				System.out.println(c.getCriteriaString());
 				System.out.println(Criteria.evaluate(c, map));
-				
+
 			} else {
 				Criterian c = (Criterian) result;
 				System.out.println(c.getExpression());
