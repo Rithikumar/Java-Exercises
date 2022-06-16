@@ -3,6 +3,7 @@ package com.learn.criteria;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
+import java.util.Stack;
 
 /**
  * <p>
@@ -334,11 +335,14 @@ public class Parse {
 		allowedFilterCols.add("field2");
 		allowedFilterCols.add("field3");
 		allowedFilterCols.add("field4");
+		allowedFilterCols.add("phone1");
+		allowedFilterCols.add("age");
+		allowedFilterCols.add("gender");
 
 		// Operators which are allowed
 		ArrayList<Operator> allowedOperators = new ArrayList<Operator>();
-		allowedOperators.add(Operator.EQUAL);
-		allowedOperators.add(Operator.NOT_EQUAL);
+//		allowedOperators.add(Operator.EQUAL);
+//		allowedOperators.add(Operator.NOT_EQUAL);
 
 		System.out.print("Enter string: ");
 		String in = new Scanner(System.in).nextLine();
@@ -349,6 +353,9 @@ public class Parse {
 		map.put("field2", "3");
 		map.put("field3", "2");
 		map.put("field4", "1");
+		map.put("phone1", "9876543210");
+		map.put("age", "3");
+		map.put("gender", "M");
 		try {
 			// .out.println(((Criteria) loadFromString(in)).toString());
 			Criteria result = loadFromString(in, allowedFilterCols, allowedOperators);
@@ -357,6 +364,12 @@ public class Parse {
 
 		} catch (Exception e) {
 			e.printStackTrace();
+//			int[] numbers = {1,2,3,4,5};
+//			int i = numbers[3];
+//			
+//			ArrayList[] number 
+			
+			
 		}
 	}
 }

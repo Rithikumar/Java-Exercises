@@ -29,7 +29,19 @@ class Child extends Parent{
 
 public class SuperConstructor {
 	public static void main(String[] args) {
+		
 		Child c  = new Child();
 		System.out.println(c.a);
+		num(4);
+		num(3,2);
+		
+	}
+	
+	public static void num(int a) {
+		
+	}
+	
+	public static void num(int a , int b) {
+		
 	}
 }

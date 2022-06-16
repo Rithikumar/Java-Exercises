@@ -111,7 +111,7 @@ public class Criteria {
 		return buf.toString();
 	}
 	
-	public static boolean evaluate(Criteria c , HashMap<String,Object> map) {
+	public static boolean evaluate(Criteria c , HashMap<String,Object> map) throws Exception {
 		ArrayList<Boolean> result = new ArrayList<Boolean>();
 		ArrayList<String> condition = new ArrayList<String>();
 		for(int i = 0 ; i < c.criteria.size() ; i++) {

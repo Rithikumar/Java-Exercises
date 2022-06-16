@@ -25,7 +25,7 @@ public class Criterian {
 		return true;
 	}
 
-	public static boolean evaluate(Criterian c, HashMap<String, Object> map) {
+	public static boolean evaluate(Criterian c, HashMap<String, Object> map) throws Exception {
 		boolean result = false;
 		String fie = ((String) c.field).trim();
 		String val = ((String) c.value).trim();
@@ -34,7 +34,7 @@ public class Criterian {
 		Object value = map.get(val);
 		fie = fie.substring(1, fie.length() - 1);
 		val = val.substring(1, val.length() - 1);
-		
+		try {
 		switch (op) {
 		case " = ":
 			if (key == null) {
@@ -102,6 +102,9 @@ public class Criterian {
 			}
 			break;
 
+		}
+		}catch(NumberFormatException e) {
+			throw new Exception("String is not supported for this operations");
 		}
 		return result;
 	}
