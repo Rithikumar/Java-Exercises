@@ -4,7 +4,9 @@ public enum Operator {
 	EQUAL(0),
 	NOT_EQUAL(1),
 	GREATER_THAN(2),
-	LESSER_THAN(3);
+	LESSER_THAN(3),
+	BETWEEN(4),
+	EXIST(5);
 	
 	private Integer operator;
 	
@@ -26,6 +28,10 @@ public enum Operator {
 			return " > " ;
 		case 3: 
 			return " < " ;
+		case 4:
+			return " BETWEEN ";
+		case 5:
+			return " EXISTS ";
 		default:
 			return null;
 		}

@@ -246,19 +246,39 @@ public class Parse {
 
 		String[] params = criterianString.split(",");
 		Criterian criterian = null;
+		int opValue = Integer.parseInt(params[1]);
 
 //		Working in progress
-//		if(arr.length == 4) {
-//			c = new Criterian( arr[0], Operator.EQUAL, arr[2],arr[3]);
-//		}
-//		else
-
-		// Checks if the parameter count is right
+		try {
+			if (params.length == 2) {
+				if ((allowedOperators == null || allowedOperators.isEmpty()) && opValue == 5) {
+					criterian = new Criterian(params[0], Operator.EXIST);
+				} else if (allowedOperators.get(opValue) == Operator.EXIST) {
+					criterian = new Criterian(params[0], Operator.EXIST);
+				}
+			}
+		} catch (Exception e) {
+			throw new Exception("The Operator is not allowed");
+		}
+		try {
+			if (params.length == 4) {
+				// validating key and value here
+				checkVariable(params[0], allowedFilterCols);
+				checkVariable(params[2], allowedFilterCols);
+				checkVariable(params[3], allowedFilterCols);
+				if ((allowedOperators == null || allowedOperators.isEmpty()) && opValue == 4) {
+					criterian = new Criterian(params[0], Operator.BETWEEN, params[2], params[3]);
+				} else if (allowedOperators.get(opValue) == Operator.BETWEEN) {
+					criterian = new Criterian(params[0], Operator.BETWEEN, params[2], params[3]);
+				}
+			}
+		} catch (Exception e) {
+			throw new Exception("The Operator is not allowed");
+		}
 		if (params.length == 3) {
-			int opValue = Integer.parseInt(params[1]);
 			// validating key and value here
 			checkVariable(params[0], allowedFilterCols);
-			checkVariable(params[2], allowedFilterCols);
+
 			// if null all operators are included
 			if (allowedOperators == null || allowedOperators.isEmpty()) {
 				switch (opValue) {
@@ -280,18 +300,21 @@ public class Parse {
 			}
 			// Use operators present in the allowed operators
 			else {
+				// validating key and value here
+				checkVariable(params[0], allowedFilterCols);
 				if (allowedOperators.size() > opValue) {
 					criterian = new Criterian(params[0], allowedOperators.get(opValue), params[2]);
 				} else {
 					throw new Exception("Operator is invalid in (" + params[0] + "," + opValue + "," + params[1] + ")");
 				}
 			}
-			return criterian;
+
 		}
 		// Exception is thrown if parameters are less or more
-		else {
+		else if(params.length != 4 && params.length !=2){
 			throw new Exception("Parameters invalid in (" + criterianString + ")");
 		}
+		return criterian;
 	}
 
 	/**
@@ -368,8 +391,9 @@ public class Parse {
 //			int i = numbers[3];
 //			
 //			ArrayList[] number 
-			
-			
+
+			// case " EXISTS ":
+			// return
 		}
 	}
 }
