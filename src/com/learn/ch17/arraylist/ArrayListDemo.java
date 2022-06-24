@@ -22,6 +22,7 @@ public class ArrayListDemo {
 
 		al.remove("F");
 		al.remove(2);
+		
 
 		System.out.println("Size of al after additions: " + al.size());
 
