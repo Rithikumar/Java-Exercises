@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<link rel="icon" href="icon.png" type="image/icon type">
+<meta charset="UTF-8">
+<title>UrlManger</title>
+<link rel="stylesheet" href="home.css">
+</head>
+<body onload=getPatterns()>
+
+	<section class="navigation">
+		<div class="nav-container">
+			<div class="brand">
+				<a href="#!">UrlManager</a>
+			</div>
+			<nav>
+				<div class="nav-mobile">
+					<a id="navbar-toggle" href="#!"><span></span></a>
+				</div>
+
+				<div class="divv">
+					<ul class="nav-list">
+						<li><a href="home.html">Home</a></li>
+						<li><a href="#!">About</a></li>
+						<li><a href="index.html">Login</a></li>
+						<li><a href="#!">SignUp</a></li>
+						<li><a href="#!">Contact</a></li>
+					</ul>
+				</div>
+
+
+			</nav>
+		</div>
+	</section>
+	<div id="bigBox">
+		<button class="cmt-btn add">Add
+			Pattern</button>
+	</div>
+	<div id="modal"></div>
+
+	<div class="input">
+		<div class="form__group field">
+			<input type="text" class="form__field" placeholder="sampleUrl"
+				name="sampleUrl" id='sampleUrl' required autocomplete="off" /> <label
+				for="sampleUrl" class="form__label">Sample Url</label>
+		</div>
+		<button class="cssbuttons-io-button">
+			<span>submit</span>
+		</button>
+	</div>
+	<section class="footer">
+		<p>Done by Rithik@2022</p>
+	</section>
+	<script src="NewHome.js"></script>
+</body>
+</html>

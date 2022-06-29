@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+    "/home/local/ZOHOCORP/rithi-zstch1028/eclipse-workspace/UrlManager/src/main/webapp/WEB-INF/struts-2.3.dtd">
+    
+<struts>
+	<constant name="struts.devMode" value="true"/>
+	<package name="default" namespace="/" extends="struts-default,json-default">
+	
+		<action name="login" class="com.login.Login">
+			<result name = "success">/home.html</result>
+			<result name = "failure">/index.html</result>
+		</action>
+		<action name="add" class="com.controller.Control" method="addPattern"/>
+		<action name="get" class="com.controller.Control" method="getPatterns"/>
+		<action name="check" class="com.controller.Control" method="check"/>
+	</package>
+</struts>

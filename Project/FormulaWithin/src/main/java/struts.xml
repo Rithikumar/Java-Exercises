@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+    "/home/local/ZOHOCORP/rithi-zstch1028/eclipse-workspace/FormulaWithin/src/main/webapp/WEB-INF/struts-2.3.dtd">
+    
+<struts>
+	<package name="default" namespace="/" extends="struts-default,json-default">
+		<action name="login" class="com.login.Login" method="execute">
+			<result name = "success">HTML/home.html</result>
+			<result name = "failure">HTML/index.html</result>
+		</action>
+		<action name="get" class="com.formulas.Controller" method="getFormulas" />
+		 <action name="add" class="com.formulas.Controller" method="addFormula"/>
+		<action name="update" class="com.formulas.Controller" method="editFormula"/>
+		<action name="delete" class="com.formulas.Controller" method="deleteFormula"/>
+		<action name="check" class="com.formulas.Controller" method="check"/>
+	</package>
+</struts>

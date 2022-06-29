@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>formulaE</title>
+<link rel="stylesheet" href="CSS/home.css">
+<script src="https://kit.fontawesome.com/c36a7112dd.js" crossorigin="anonymous"></script>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<link rel="stylesheet" href="../CSS/home.css">
+</head>
+<body>
+	<section class="navigation">
+		<div class="nav-container">
+			<div class="brand">
+				<a href="#!">FormulaE</a>
+			</div>
+			<nav>
+				<div class="nav-mobile">
+					<a id="navbar-toggle" href="#!"><span></span></a>
+				</div>
+				<div class="divv">
+					<ul class="nav-list">
+						<li><a href="home.html">Home</a></li>
+						<li><a href="#!">About</a></li>
+						<li><a href="index.html">Login</a></li>
+						<li><a href="#!">SignUp</a></li>
+						<li><a href="#!">Contact</a></li>
+					</ul>
+				</div>
+			</nav>
+		</div>
+	</section>
+	<div class="container">
+		<div class="col-3 name">
+			<input class="effect-7" type="text" id="formName"
+				placeholder="formula name" autocomplete="off" required> <span
+				class="focus-border"> <i></i>
+			</span>
+		</div>
+		<div class="col-3 exp">
+			<input class="effect-2" type="text" id="formExp"
+				placeholder="formula expression" autocomplete="off" required> <span
+				class="focus-border"></span>
+		</div>
+		<button id="add" onclick="send()">Add Formula</button>
+	</div>
+	<div class="formulas" id="formula_box"></div>
+	<div id="modal"></div>
+	<div id="result" onclick="none(this.id)"></div>
+	<button class="check"> <span>Validate and show Result</span>
+</button>
+	<section class="footer">
+		<p>Done by Rithik@2022</p>
+	</section>
+	<!-- <script src="JS/home.js"></script>
+	<script src="../JS/home.js"></script>-->
+	<script src="JS/NewHome.js"></script>
+	<script src="../JS/NewHome.js"></script>
+</body>
+</html>
